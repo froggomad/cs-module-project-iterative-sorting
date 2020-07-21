@@ -51,34 +51,39 @@ buckets.
 What is the time and space complexity of the counting sort algorithm?
 '''
 def counting_sort(arr, maximum=None):
-    # Your code here    
-    if arr != None:
-        if maximum == None:
-            maximum = len(arr)
-        #make an array of 0's 1 over the max
-        max = maximum+1
-        buckets = [0 for i in range(max)]
-        
-        #fill the buckets given rules
-        for num in arr:
-            if num < 0:
-                return "Error, negative numbers not allowed in Count Sort"
-            if num > maximum:
-                print("Over Max, don't include")
-            else:
-                buckets[num] += 1
-        print(buckets)
-        #track each array position
-        i=0
-        #iterate up to the max, filling each position with a sorted value
-        for bucket in range(max-1):
-                arr[i] = bucket
-                i += 1
-        return arr
+    # Your code here 
+    if maximum == None:
+        max_val = 0
+        for value in arr:
+            if value > max_val:
+                max_val = value
+        maximum = max_val + 1
+    #make an array of 0's 1 over the max
+    max = maximum+1
+    buckets = [0 for i in range(max)]
+    
+    #fill the buckets given rules
+    for num in arr:
+        if num < 0:
+            return "Error, negative numbers not allowed in Count Sort"
+        else:
+            buckets[num] += 1
+    # track each array position
+    
+    # iterate up to the max, filling each position with a sorted value
+    output = []
+    #the index becomes the value to add, the bucket is the number of times to add it
+    for value_to_add, bucket in enumerate(buckets):
+        #if a value is 0, this will be skipped since the range will be 0
+        for _ in range(bucket):
+            output.append(value_to_add)    
+    return output
+
+inputArr = [0, 3, 2, 1, 2, 1, 1, 1]
+print(f"input: {inputArr}")
+print(f"output: {counting_sort(inputArr)}")
+
 import random
 arr4 = random.sample(range(200), 50)
-arr = [1,3,3,4,5,6,7,3,4,5,6,7]
-print(sorted(arr4))
-arr = counting_sort(arr4)
-
-print(arr)
+print(f"test: {sorted(arr4)}")
+print(f"actual: {counting_sort(arr4)}")

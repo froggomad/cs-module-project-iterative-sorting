@@ -35,7 +35,7 @@ class IterativeSortingTest(unittest.TestCase):
         self.assertEqual(counting_sort(arr1), [0,1,2,3,4,5,6,7,8,9])
         self.assertEqual(counting_sort(arr2), [])
         self.assertEqual(counting_sort(arr3), "Error, negative numbers not allowed in Count Sort")
-        self.assertEqual(list(set(counting_sort(arr4))), sorted(list(set(arr4))))
+        self.assertEqual(counting_sort(arr4), sorted(arr4))
 
 
 if __name__ == '__main__':
