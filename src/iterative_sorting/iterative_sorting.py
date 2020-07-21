@@ -71,8 +71,7 @@ def counting_sort(arr, maximum=None):
         #track each array position
         i=0
         #iterate up to the max, filling each position with a sorted value
-        for bucket in range(max):
-            for _ in range(buckets[bucket]):
+        for bucket in range(max-1):
                 arr[i] = bucket
                 i += 1
         return arr
